@@ -1,0 +1,386 @@
+
+<html>
+	<head>
+		<title>Forms</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<script src="beforeobfucate.js" defer></script>
+		<script src="pracnojs.js" defer></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		
+		
+	</head>
+	<body>
+
+		<!-- Header -->
+			<Header id="header">
+				<a href="http://www.namaf.org.na/" class="logo" target="_blank"><img src="images/NAMAF.png" width="100" height="70"></a>
+			</Header>
+
+		<!-- Banner -->
+			<section id="banner">
+			<br>
+			<br>
+
+			
+						<h1>Enter Details</h1>
+							<div class="inner">
+							<div class="flex">
+											<label class=l">Stakeholder</label>
+											<select name="Stakeholder" id="Stakeholder">
+											<option value="">Select stakeholder...</option>
+												<option value="Service provider">Service provider</option>
+												<option value="Administrator">Administrator</option>
+												<option value="Namaf">Namaf</option>
+												<option value="Software vendor">Software vendor</option>
+												<option value="Proffesional association">Professional association</option>
+												<option value="Other">Other</option>
+											</select>
+											</div>
+								<div class="flex">
+											
+									<div class="flex-child">
+										
+											
+																		
+											<label class=l" id = "labelPracno">Practice Number</label> 
+											<input type="number" id="Pracno" placeholder="Enter practice number" >
+				
+											<label class=l" id = "labelDiscipline">Discipline</label>
+											<label class=l" id = "labelNDiscipline">Nominated Discipline</label>
+											<input type="text" id="Discipline" placeholder="Enter discipline" >
+											
+											<label class=l" id ="labelName">Name</label>
+											<input type="text" id="Name" placeholder="Enter name" >
+	
+									</div>
+									<div class="flex-child">
+									
+											
+											
+				
+											<label class=l" id = "labelEmail">Email</label>
+											<input type="text" id="Email" placeholder="Enter email" >
+							
+											
+											<label class=l" id = "labelPhone" >Phone</label> 
+											
+											<fieldset id="form-group" style="display: none;">
+											<select id="country" name = "country" style="display: none;">	
+													<option value="">Code</option>
+													<option data-code="+264" value="na">Namibia</option>
+													<option data-code="+27" value="za" >South Africa</option>
+											</select> 
+
+											<input type="text" id="Phone" name ="phone" placeholder="Enter phone" style="display: none;" maxlength="12">
+											</fieldset>
+											
+											<label class=l" id = "labelTypesub">Submission Type</label>
+											<select name="Scheme" id="Typesub">
+											<option value = "">Enter submission type...</option>
+											<option value="Appeal">Appeal </option>
+											<option value="Coding">Coding </option>
+											<option value="Inflation">Inflation </option>
+											</select>
+											
+									</div>
+									
+								</div>
+								
+										<button type="submit" id="post-btn">Submit</button> &nbsp;
+										<button type="submit" id="post-btn-prac" style="display: none;">Search Practice Number</button>
+									<br>
+								
+							</div>		
+	
+			</section>
+			
+			<!-- Footer -->
+			<footer id="footer">
+				 <br>
+					<div class="copyright">
+						&copy; Copyright 2021 <br>
+						Administered by Clinical Governance Services
+						
+				</div>
+			</footer>
+
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+			
+<script type="text/javascript">
+$(document).ready(function () {
+		$("[name='country']").on("change", function () {
+			$("[name='phone']").val($(this).find("option:selected").data("code"));
+		});
+	});
+    /*$(function () {
+        $("#Stakeholder").change(function () {
+            if ($(this).val() == "Service provider") {
+                $("#Pracno").removeAttr("disabled");
+                $("#Pracno").focus();
+            } else {
+                $("#Pracno").attr("disabled", "disabled");
+            }
+        });
+    });*/
+	$(document).ready(function () {
+        $('#Stakeholder').change(function () {
+		if ($('#Stakeholder').val() == '') {
+				$('#labelPracno').hide();
+				$('#labelNDiscipline').hide();
+				$('#Pracno').hide();
+				$('#Pracno').val("");
+				$('#labelDiscipline').hide();
+				$('#Discipline').hide();
+				$('#Discipline').val("");
+				$('#labelName').hide();
+				$('#Name').hide();
+				$('#Name').val("");
+				$('#labelEmail').hide();
+				$('#Email').hide();
+				$('#Email').val("");
+				$('#form-group').hide();
+				$('#labelPhone').hide();
+				$('#Phone').hide();
+				$('#Phone').val("");
+				$('#country').hide();
+				$('#country').val("");
+				$('#labelTypesub').hide();
+				$('#Typesub').hide();
+				$('#Typesub').val("");
+				$('#post-btn').hide();
+		
+            }else if ($('#Stakeholder').val() == 'Service provider') {
+                $('#labelPracno').show();
+				$('#labelNDiscipline').hide();
+				$('#Pracno').show();
+				$('#Pracno').val("");
+				$('#labelDiscipline').hide();
+				$('#Discipline').hide();
+				$('#Discipline').val("");
+				$('#labelName').hide();
+				$('#Name').hide();
+				$('#Name').val("");
+				$('#labelEmail').hide();
+				$('#Email').hide();
+				$('#Email').val("");
+				$('#form-group').hide();
+				$('#labelPhone').hide();
+				$('#Phone').hide();
+				$('#Phone').val("");
+				$('#country').hide();
+				$('#country').val("");
+				$('#labelTypesub').hide();
+				$('#Typesub').hide();
+				$('#Typesub').val("");
+				$('#post-btn').hide();
+				//////
+				$('#Pracno').on('input', function() {
+					  // If Pracno is not empty
+					if ($.trim(this.value) != "") {
+						$('#post-btn-prac').show();
+						
+						//////
+						
+					}else{
+						$('#labelDiscipline').hide();
+						$('#Discipline').hide();
+						$('#Discipline').val("");
+						$('#labelName').hide();
+						$('#Name').hide();
+						$('#Name').val("");
+						$('#labelEmail').hide();
+						$('#Email').hide();
+						$('#Email').val("");
+						$('#labelPhone').hide();
+						$('#form-group').hide();
+						$('#Phone').hide();
+						$('#Phone').val("");
+						$('#country').hide();
+						$('#country').val("");
+						$('#labelTypesub').hide();
+						$('#Typesub').hide();
+						$('#Typesub').val("");
+						$('#post-btn').hide();
+						
+					}
+				}).keyup();	
+			}else{
+				$('#labelPracno').hide();
+                $('#Pracno').hide();
+				$('#labelDiscipline').hide();
+				$('#Discipline').show();
+				$('#labelNDiscipline').show();
+				$('#Discipline').show();
+				$('#Discipline').val("");
+				$('#labelName').hide();
+				$('#Name').hide();
+				$('#Name').val("");
+				$('#labelEmail').hide();
+				$('#Email').hide();
+				$('#Email').val("");
+				$('#labelPhone').hide();
+				$('#form-group').hide();
+				$('#Phone').hide();
+				$('#Phone').val("");
+				$('#country').hide();
+				$('#country').val("");
+				$('#labelTypesub').hide();
+				$('#Typesub').hide();
+				$('#Typesub').val("");
+				$('#post-btn-prac').hide();
+				$('#Discipline').on('input', function() {
+					// If Discipline is not empty
+					if ($.trim(this.value) != ""){
+						$('#labelName').show();
+						$('#Name').show();
+						//////
+						$('#Name').on('input', function() {
+						// If Name is not empty
+							if ($.trim(this.value) != "") {
+								$('#labelEmail').show();
+								$('#Email').show();
+								//////
+								$('#Email').on('input', function() {
+									// If value is not empty
+									if ($.trim(this.value) != "") {
+										$('#form-group').show();
+										$('#labelPhone').show();
+										$('#Phone').show();
+										$('#country').show();
+										//////
+										$('#Phone').on('input', function() {
+											// If value is not empty
+											if ($.trim(this.value) != "") {
+												$('#labelTypesub').show();
+												$('#Typesub').show();
+												/////
+												$('#Typesub').on('input', function() {
+													// If value is not empty
+													if ($.trim(this.value) != "") {
+														
+														$('#post-btn').show();
+														
+													}else{
+														
+														$('#post-btn').hide();
+														
+													}
+												}).keyup();
+											}else{
+												$('#labelTypesub').hide();
+												$('#Typesub').hide();
+												$('#Typesub').val("");
+												$('#post-btn').hide();
+												
+											}
+										}).keyup();
+									}else{
+										$('#form-group').hide();
+										$('#labelPhone').hide();
+										$('#Phone').hide();
+										$('#Phone').val("");
+										$('#country').hide();
+										$('#country').val("");
+										$('#labelTypesub').hide();
+										$('#Typesub').hide();
+										$('#Typesub').val("");
+										$('#post-btn').hide();
+										}
+								}).keyup();
+							}else{
+								$('#labelEmail').hide();
+								$('#Email').hide();
+								$('#Email').val("");
+								$('#form-group').hide();
+								$('#labelPhone').hide();
+								$('#Phone').hide();
+								$('#Phone').val("");
+								$('#country').hide();
+								$('#country').val("");
+								$('#labelTypesub').hide();
+								$('#Typesub').hide();
+								$('#Typesub').val("");
+								$('#post-btn').hide();
+							}
+						}).keyup();
+					}else{
+						$('#labelName').hide();
+						$('#Name').hide();
+						$('#Name').val("");
+						$('#labelEmail').hide();
+						$('#Email').hide();
+						$('#Email').val("");
+						$('#form-group').hide();
+						$('#labelPhone').hide();
+						$('#Phone').hide();
+						$('#Phone').val("");
+						$('#country').hide();
+						$('#country').val("");
+						$('#labelTypesub').hide();
+						$('#Typesub').hide();
+						$('#Typesub').val("");
+						$('#post-btn').hide();
+					}
+				}).keyup();
+            }
+			
+        });
+    });
+	
+	/*function handleClick() {
+		
+	}*/
+	
+	
+	function myFunction() {
+		const sendHttpRequest = (method, url, data) => {
+			return fetch(url, {
+				method: method,
+				body: JSON.stringify(data),
+				headers:data ? {'Content-Type': 'application/json'} : {},
+						
+				/*toString: function() {
+					return `${this.protocol}://${this.hostname}${this.path}`;
+				  }*/
+			}).then(response => {
+				
+				return response.json();
+					
+			});
+		};
+			 
+			//https://cors-anywhere.herokuapp.com/
+
+		const postData= () => {
+			sendHttpRequest('POST', 'https://qrztmj5dq8.execute-api.us-east-2.amazonaws.com/formdev/formpost',[{
+				Pracno: document.getElementById('Pracno').value
+			}]).then(responseData => {
+				console.log(responseData);
+			});
+		};
+	}
+    
+</script>
+
+
+
+<!--<script>
+    function myfunction(){
+
+        if (document.getElementById('input').value = ' '){
+            alert("empty");
+        }
+        
+    }
+</script>-->
+
+
+	</body>
+</html>
